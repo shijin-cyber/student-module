@@ -137,7 +137,8 @@ Route::put('/updatedata/{id}','AjaxController@updatedata');
 //lag urls
 Route::get('stulist','AdminController@stulist');
 Route::get('addstu','AdminController@addstu');
-
+Route::get('test','TestController@dropzone');
+Route::post('dropzoneupload','TestController@upload')->name('dropzoneupload');
 
 
 
@@ -145,7 +146,7 @@ Route::get('addstu','AdminController@addstu');
 });
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('/notes','AdminController@notes');
-Route::get( '/download/{filename}', 'DownloadController@download');
+
 
 
 

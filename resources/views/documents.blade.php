@@ -15,6 +15,9 @@
      <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
+
+    
+
     <title></title>
 </head>
 <body>
@@ -27,7 +30,7 @@
 
 <div class="row ">
     <div class="card-body bg-primary">
-       <form action="/imageUpload" enctype="multipart/form-data" method="post">
+       <form action="/imageUpload" enctype="multipart/form-data" method="post"  >
                         @Csrf
         
 
@@ -66,10 +69,13 @@
     <input type="text" name="documenttitle" class="form-control" >
     <br>
 
-    <input type="file" name="image[]" class="form-control-image" multiple>
+    <input type="file" name="image[]"  class="form-control-image" multiple >
     <br>
-     <button type="submit" class="btn btn-success">Upload</button>
+   
+   <button type="submit" class="btn btn-success">Upload</button>
    </form>
+
+
     
 
 </div>
@@ -95,6 +101,7 @@
           <th>id</th>
                 <th>name</th>
                  <th>department</th>
+                 <th>Name</th>
                   <th>year</th>
                  <th>Update</th>
                 <th>Delete</th>
@@ -107,6 +114,7 @@
                 <td> <a href="{{$images->id}}"> {{$images->id}}</a></td>
                 <td><a href="{{$images->image}}"> {{$images->documenttitle}}</a></td>
                 <td> {{$images->department}}</td>
+                <td> {{$images->name}}</td>
                 <td> {{$images->batch}}</td>
                 
                 
@@ -124,6 +132,7 @@
                 <th>id</th>
                 <th>name</th>
                 <th>Department</th>
+                 <th>Name</th>
                 <th>Batch</th>
                 <th>Update</th>
                 <th>Delete</th>
@@ -321,6 +330,12 @@
 
       });
     </script>
+
+
+
+
+
+   
 </body>
 </html>
 

@@ -1,284 +1,52 @@
-@extends ('admin_layout')
-@section ('content')
-<div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
-        <div class="wrapper wrapper--w680">
-            <div class="card card-4">
-                <div class="card-body">
-                    <h2 class="title">Mark Attendence</h2>
-                    <form method="POST" action="{{route('add_attendence')}}">
-                        @csrf
-                        <div class="row row-space">
-                            <div class="col-8">
-                                <div class="input-group">
-                                
-                                    Select Student: <select name="name" id="subject" class="label" style="padding-right: 200px;">
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
-                                    @foreach($id as $id)
-                                     <option value="select student" selected="selected"  class="input--style-4" ></option>
-                             <option value="{{$id->name}}" selected="selected"  class="input--style-4" >{{ $id->name }}</option>
-                                      @endforeach
-                                       @foreach($errors->get('name') as $e)
-                    
-                            <small class="text-danger"> {{ $e  }}</small>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
-                                     @endforeach
-                                   </select>
-                                    <br><br>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/dropzone.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/basic.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/dropzone.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/dropzone.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.css"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.js"></script>
 
 
-                                     
-                                    
-                                    
-                                </div>
-                            </div>
-                            
-                        </div>
-                        <div class="row row-space">
-                            <div class="col-8">
-                                <div class="input-group">
-
-                         <label for="birthday">Select Date</label>
-                                     <input type="date" id="birthday" name="date">
-                                      @foreach($errors->get('date') as $e)
-                    
-                                <small class="text-danger"> {{ $e  }}</small>
-
-                                       @endforeach
-                                        <br><br>
-
-                                </div>
-                            </div>
-                            
-                        </div>
-                       
-                         <legend>Hour 1:</legend>
-                         <div class="form-check">
-                  <input class="form-check-input" type="radio" name="hour1" id="hour1"  value="1" checked>
-                   @foreach($errors->get('hour1') as $e)
-                    
-                                   <small class="text-danger"> {{ $e  }}</small>
-
-                                    @endforeach
-                     <label class="form-check-label" for="exampleRadios1">
-                      Present
-                       </label>
-                       </div>
-                        <div class="form-check">
-                         <input class="form-check-input" type="radio" name="hour1" id="hour1" value="0">
-                          @foreach($errors->get('hour1') as $e)
-                    
-                                   <small class="text-danger"> {{ $e  }}</small>
-
-                                    @endforeach
-                        <label class="form-check-label" for="exampleRadios2">
-                         Absent
-                   </label>
-                   </div>
+</head>
+<body>
+  <form id="dropzoneForm" class="dropzone" action="{{'dropzoneupload'}}">
+    @csrf
+    
+    
+  </form>
+  <button type="button" class="btn btn-info" id="submit-all">upload</button>
 
 
-                         <legend>Hour 2:</legend>
-                         <div class="form-check">
-                  <input class="form-check-input" type="radio" name="hour2" id="hour2"  value="1" checked>
-                   @foreach($errors->get('hour1') as $e)
-                    
-                                   <small class="text-danger"> {{ $e  }}</small>
+  <script type="text/javascript">
+    Dropzone.options.dropzoneForm ={
+      autoProcessQueue : false,
+      acceptedFiles : ".png,.jpg,.gif,.bmp,.jpeg",
+      init :function(){
+        var submitButton =  document.querySelector("#submit-all");
+        myDropzone = this;
+        submitButton.addEventListener('click',function(){
+          myDropzone.ProcessQueue();
 
-                                    @endforeach
-                     <label class="form-check-label" for="exampleRadios1">
-                      Present
-                       </label>
-                       </div>
-                        <div class="form-check">
-                         <input class="form-check-input" type="radio" name="hour2" id="hour2" value="0">
-                          @foreach($errors->get('hour1') as $e)
-                    
-                                   <small class="text-danger"> {{ $e  }}</small>
+        });
+        this.on("complete",function(){
+          if(this.getQueuedFiles().length == 0 && this.getUploadingFiles().length ==0){
+            var _this = this;
+            _this.removeAllFiles();
+          }
 
-                                    @endforeach
-                        <label class="form-check-label" for="exampleRadios2">
-                         Absent
-                   </label>
-                   </div>
+        });
 
+      }
+    };
+  </script>
 
-
-                         <legend>Hour 3:</legend>
-                         <div class="form-check">
-                  <input class="form-check-input" type="radio" name="hour3" id="hour3"  value="1" checked>
-                   @foreach($errors->get('hour1') as $e)
-                    
-                                   <small class="text-danger"> {{ $e  }}</small>
-
-                                    @endforeach
-                     <label class="form-check-label" for="exampleRadios1">
-                      Present
-                       </label>
-                       </div>
-                        <div class="form-check">
-                         <input class="form-check-input" type="radio" name="hour3" id="hour3" value="0">
-                         @foreach($errors->get('hour1') as $e)
-                    
-                                   <small class="text-danger"> {{ $e  }}</small>
-
-                                    @endforeach
-                         
-                         
-
-                        <label class="form-check-label" for="exampleRadios2">
-                         Absent
-                   </label>
-                   </div>
-
-
-
-                         <legend>Hour 4:</legend>
-                         <div class="form-check">
-                  <input class="form-check-input" type="radio" name="hour4" id="hour4"  value="1" checked>
-                  @foreach($errors->get('hour1') as $e)
-                    
-                                   <small class="text-danger"> {{ $e  }}</small>
-
-                                    @endforeach
-                     <label class="form-check-label" for="exampleRadios1">
-                      Present
-                       </label>
-                       </div>
-                        <div class="form-check">
-                         <input class="form-check-input" type="radio" name="hour4" id="hour4" value="0">
-                         @foreach($errors->get('hour1') as $e)
-                    
-                                   <small class="text-danger"> {{ $e  }}</small>
-
-                                    @endforeach
-                        <label class="form-check-label" for="exampleRadios2">
-                         Absent
-                   </label>
-                   </div>
-
-
-                         <legend>Hour 5:</legend>
-                         <div class="form-check">
-                  <input class="form-check-input" type="radio" name="hour5" id="hour5"  value="1" checked>
-                  @foreach($errors->get('hour1') as $e)
-                    
-                                   <small class="text-danger"> {{ $e  }}</small>
-
-                                    @endforeach
-                     <label class="form-check-label" for="exampleRadios1">
-                      Present
-                       </label>
-                       </div>
-                        <div class="form-check">
-                         <input class="form-check-input" type="radio" name="hour5" id="hour5" value="0">
-                         @foreach($errors->get('hour1') as $e)
-                    
-                                   <small class="text-danger"> {{ $e  }}</small>
-
-                                    @endforeach
-                        <label class="form-check-label" for="exampleRadios2">
-                         Absent
-                   </label>
-                   </div>
-
-
-
-                         <legend>Hour 6:</legend>
-                         <div class="form-check">
-                  <input class="form-check-input" type="radio" name="hour6" id="hour6"  value="1" checked>
-                  @foreach($errors->get('hour1') as $e)
-                    
-                                   <small class="text-danger"> {{ $e  }}</small>
-
-                                    @endforeach
-                     <label class="form-check-label" for="exampleRadios1">
-                      Present
-                       </label>
-                       </div>
-                        <div class="form-check">
-                         <input class="form-check-input" type="radio" name="hour6" id="hour6" value="0">
-                         @foreach($errors->get('hour1') as $e)
-                    
-                                   <small class="text-danger"> {{ $e  }}</small>
-
-                                    @endforeach
-                        <label class="form-check-label" for="exampleRadios2">
-                         Absent
-                   </label>
-                   </div>
-
-
-                         <legend>Hour 7:</legend>
-                         <div class="form-check">
-                  <input class="form-check-input" type="radio" name="hour7" id="hour7"  value="1" checked>
-                   @foreach($errors->get('hour1') as $e)
-                    
-                                   <small class="text-danger"> {{ $e  }}</small>
-
-                                    @endforeach
-                     <label class="form-check-label" for="exampleRadios1">
-                      Present
-                       </label>
-                       </div>
-                        <div class="form-check">
-                         <input class="form-check-input" type="radio" name="hour7" id="hour7" value="0">
-                          @foreach($errors->get('hour1') as $e)
-                    
-                                   <small class="text-danger"> {{ $e  }}</small>
-
-                                    @endforeach
-                        <label class="form-check-label" for="exampleRadios2">
-                         Absent
-                   </label>
-                   </div>
-
-
-
-                         <legend>Hour 8:</legend>
-                         <div class="form-check">
-                  <input class="form-check-input" type="radio" name="hour8" id="hour8"  value="1" checked>
-                   @foreach($errors->get('hour1') as $e)
-                    
-                                   <small class="text-danger"> {{ $e  }}</small>
-
-                                    @endforeach
-                     <label class="form-check-label" for="exampleRadios1">
-                      Present
-                       </label>
-                       </div>
-                        <div class="form-check">
-                         <input class="form-check-input" type="radio" name="hour8" id="hour8" value="0">
-                          @foreach($errors->get('hour1') as $e)
-                    
-                                   <small class="text-danger"> {{ $e  }}</small>
-
-                                    @endforeach
-                        <label class="form-check-label" for="exampleRadios2">
-                         Absent
-                   </label>
-                   </div>
-
-                             
-                           
-                       
-                        
-                        <div class="p-t-15">
-                            <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Jquery JS-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <!-- Vendor JS-->
-    <script src="vendor/select2/select2.min.js"></script>
-    <script src="vendor/datepicker/moment.min.js"></script>
-    <script src="vendor/datepicker/daterangepicker.js"></script>
-
-    <!-- Main JS-->
-    <script src="addjs/global.js"></script>
-
-
-@endsection
+</body>
+</html>

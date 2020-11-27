@@ -82,4 +82,18 @@ class TestController extends Controller
 
     //return view('attendence',['id'=> $id]);
 
+    public function dropzone(){
+        return view('test');
+
+    }
+
+    public function upload(Request $request){
+    $image = $request->file('file');
+    $imageName = time(). '.' .$image->extension();
+    $image->move(public_path('dropzone'),$imageName);
+    return response()->json(['success'=>$imageName]);
+}
+
+
+
 }
