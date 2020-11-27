@@ -31,8 +31,8 @@
             <tr>
                 <th>id</th>
                 <th>Notes</th>
-                
-                     <th>Show</th>
+                <th>Show</th>
+                 <th>Download</th>
                       
             </tr>
 
@@ -45,6 +45,9 @@
                 <td>
                   <a href="{{$images->image}}" class="btn btn-success showbtn">Show</a>
                   </td>
+                  <td>
+                  <a href="{{$images->image}}" class="btn btn-danger dwnbtn" download="">Download</a>
+                  </td>
                   
             </tr>
           </tbody>
@@ -54,6 +57,8 @@
                 <th>id</th>
                 <th>Notes</th>
                 <th>Show</th>
+                <th>Download</th>
+
               </tr>
         </tfoot>
     </table>
