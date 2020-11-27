@@ -30,7 +30,7 @@
           
             <tr>
                 <th>id</th>
-                <th>name</th>
+                <th>Notes</th>
                 
                      <th>Show</th>
                       
@@ -52,7 +52,7 @@
         <tfoot>
             <tr>
                 <th>id</th>
-                <th>name</th>
+                <th>Notes</th>
                 <th>Show</th>
               </tr>
         </tfoot>
