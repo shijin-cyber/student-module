@@ -103,6 +103,7 @@
                  <th>department</th>
                  <th>Name</th>
                   <th>year</th>
+                   <th>Download</th>
                  <th>Update</th>
                 <th>Delete</th>
             </tr>
@@ -117,7 +118,9 @@
                 <td> {{$images->name}}</td>
                 <td> {{$images->batch}}</td>
                 
-                
+                  <td>
+                  <a href="{{$images->image}}" class="btn btn-info dwnbtn" download="">Download</a>
+                  </td>
                  <td>
                   <a href="/editfile/{{$images->id}}" class="btn btn-success ">Edit</a>
                   </td>
@@ -134,6 +137,7 @@
                 <th>Department</th>
                  <th>Name</th>
                 <th>Batch</th>
+                <th>Download</th>
                 <th>Update</th>
                 <th>Delete</th>
               </tr>

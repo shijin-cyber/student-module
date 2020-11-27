@@ -30,16 +30,13 @@
           
             <tr>
                 <th>id</th>
-<<<<<<< HEAD
                 <th>name</th>
                 
                      <th>Show</th>
                      <th>Download</th>
-=======
-                <th>Notes</th>
-                <th>Show</th>
-                 <th>Download</th>
->>>>>>> feature
+
+                
+
                       
             </tr>
 
@@ -65,10 +62,9 @@
                 <th>Notes</th>
                 <th>Show</th>
                 <th>Download</th>
-<<<<<<< HEAD
-=======
 
->>>>>>> feature
+
+
               </tr>
         </tfoot>
     </table>
